@@ -5,4 +5,5 @@
 ## 챕터 별 링크
 
 Chapter 01: 강의 소개라서 패스.  
-[Chapter 02](/ch02/ch02.md): JavaScript 기본 문법 정리
+[Chapter 02](/ch02/ch02.md): JavaScript 기본  
+[Chapter 03](/ch03/ch03.md): JavaScript 심화
