@@ -1,4 +1,4 @@
-# Chapter02. JavaScript 기초
+# Section01. JavaScript 기초
 
 ## 콘솔 로그 출력
 

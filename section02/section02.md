@@ -1,4 +1,4 @@
-# Chapter03. JavaScript 심화
+# Section02. JavaScript 심화
 
 ## Truthy & Falsy
 
