@@ -225,3 +225,111 @@ add10(0)
     console.log(error);
   });
 ```
+
+## async & await
+
+`async`와 `await`는 Promise를 더 간결하고 직관적으로 사용할 수 있게 해주는 키워드다.
+
+### async
+
+- 어떤 함수를 **비동기 함수로 만들어주는** 키워드
+- 함수가 **Promise를 반환**하도록 변환해준다.
+
+```javascript
+async function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        name: "John",
+        age: 20,
+      });
+    }, 1000);
+  });
+}
+```
+
+### await
+
+- **비동기 작업을 동기적으로** 작성할 수 있게 해주는 키워드
+- **비동기 함수가 다 처리되기를 기다리는** 역할을 한다.
+- await는 **async 함수 내부에서만 사용할 수 있다**.
+
+```javascript
+async function printData2() {
+  const data = await getData();
+  console.log(data);
+}
+```
+
+### Promise vs async/await
+
+Promise 방식
+
+```javascript
+function printData1() {
+  getData().then((result) => {
+    console.log(result);
+  });
+}
+```
+
+async/await 방식
+
+```javascript
+async function printData2() {
+  const data = await getData();
+  console.log(data);
+}
+```
+
+- **두 방식 모두 Promise를 기반**으로 비동기 작업을 처리한다.
+- async/await 방식이 더 직관적이고 동기 코드와 유사한 구조로 작성할 수 있다.
+- Promise 방식은 체이닝을 통해 연속적인 비동기 작업을 처리하지만, async/await는 일반 코드처럼 순차적으로 작성할 수 있다.
+- async/await 방식이 코드 가독성 측면에서 더 우수하다.
+
+### 연속적인 비동기 작업 처리
+
+- async/await 방식도 **연속적인 비동기 작업을 처리할 수 있다**.
+- Promise 체이닝보다 **더 직관적으로 코드를 작성**할 수 있다.
+- 일반 동기 코드와 유사한 구조로 **읽기 쉽고 디버깅하기 편하다**.
+- try-catch 구문을 사용해 오류 처리를 더 자연스럽게 할 수 있다.
+- await는 Promise의 .catch()처럼 에러를 직접 변환하거나 추가 정보를 더하는 기능이 없어 에러 처리 유연성이 떨어진다.
+
+#### Promise Chaining 방식
+
+```javascript
+function processData() {
+  fetchData()
+    .then((data) => {
+      return processStep1(data);
+    })
+    .then((result1) => {
+      return processStep2(result1);
+    })
+    .then((result2) => {
+      return processStep3(result2);
+    })
+    .then((finalResult) => {
+      console.log(finalResult);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+```
+
+#### async/await 방식
+
+```javascript
+async function processData() {
+  try {
+    const data = await fetchData();
+    const result1 = await processStep1(data);
+    const result2 = await processStep2(result1);
+    const finalResult = await processStep3(result2);
+    console.log(finalResult);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
