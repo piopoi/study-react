@@ -121,21 +121,19 @@ orderFood((food) => {
 
 ### resolve(), reject()
 
+executor: 비동기 작업을 실행하는 함수  
 `resolve()`: Promise 객체를 **성공(Fulfilled) 상태로 전환**하는 함수  
 `reject()`: Promise 객체를 **실패(Rejected) 상태로 전환**하는 함수
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
-  // executor: 비동기 작업을 실행하는 함수
-  setTimeout(() => {
-    const num = 10;
-
-    if (typeof num === "number") {
-      resolve(num + 10);
-    } else {
-      reject("num is not a number");
-    }
-  }, 1000);
+  // executor
+  const num = 10;
+  if (typeof num === "number") {
+    resolve(num + 10);
+  } else {
+    reject("num is not a number");
+  }
 });
 ```
 
