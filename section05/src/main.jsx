@@ -3,5 +3,5 @@ import "./index.css";
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <App />
+  <App /> //Root 컴포넌트: 관례상 App 컴포넌트를 사용한다.
 );
