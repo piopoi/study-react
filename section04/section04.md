@@ -44,3 +44,17 @@ React는 Virtual DOM이라는 자바스크립트 객체에 동시에 발생한 �
 **Vite**를 이용하여 앱을 생성한다.
 
 - Vite: 프론트엔드 개발 툴. 기본 설정이 적용된 React App 생성을 가능하게 해준다.
+
+## React Application
+
+- Vite를 통해 생성한 React App에는 Web Server가 내장되어 있음.
+- `npm run dev`로 웹서버를 실행하면 `http://localhost:5173`로 접속할 수 있음.
+
+### Vite의 기본 포트
+
+`5173` 포트는 React 자체의 포트가 아니라 **Vite 개발 서버의 기본 포트**다.  
+Vite의 포트는 `vite.config.js` 파일에서 변경할 수 있다.
+
+- Vite는 기본적으로 5173 포트를 사용한다.
+- Create React App(CRA)은 3000 포트를 기본으로 사용한다.
+- Next.js는 3000 포트를 기본으로 사용한다.
