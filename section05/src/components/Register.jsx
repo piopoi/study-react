@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // 간단한 회원 가입 폼
 // 1. 이름
@@ -7,38 +7,85 @@ import { useState } from "react";
 // 4. 자기소개
 
 const Register = () => {
-  const [name, setName] = useState("이름");
-  const [birth, setBirth] = useState("");
-  const [country, setCountry] = useState("");
-  const [bio, setBio] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    birth: "",
+    country: "",
+    bio: "",
+  });
 
-  const onChangeName = (e) => setName(e.target.value);
-  const onChangeBirth = (e) => setBirth(e.target.value);
-  const onChangeCountry = (e) => setCountry(e.target.value);
-  const onChangeBio = (e) => setBio(e.target.value);
+  const countRef = useRef(0);
+  const nameRef = useRef();
+  const birthRef = useRef();
+  const countryRef = useRef();
+  const bioRef = useRef();
+
+  const onChange = (e) => {
+    countRef.current++;
+    console.log(countRef.current);
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    if (input.name === "") {
+      nameRef.current.focus(); // 이름을 입력하는 DOM 요소에 포커스
+    } else if (input.birth === "") {
+      birthRef.current.focus();
+    } else if (input.country === "") {
+      countryRef.current.focus();
+    } else if (input.bio === "") {
+      bioRef.current.focus();
+    }
+  };
 
   return (
     <div>
-      <div>
-        <input value={name} onChange={onChangeName} placeholder={"이름"} />
-        {name}
-      </div>
-      <div>
-        <input value={birth} onChange={onChangeBirth} type="date" />
-        {birth}
-      </div>
-      <div>
-        <select value={country} onChange={onChangeCountry}>
-          <option value=""></option>
+      <div className="m-5 space-y-4">
+        <input
+          ref={nameRef}
+          type="text"
+          name="name"
+          className="input input-neutral"
+          value={input.name}
+          onChange={onChange}
+          placeholder={"이름"}
+        />
+        <input
+          ref={birthRef}
+          type="date"
+          name="birth"
+          className="input input-neutral"
+          value={input.birth}
+          onChange={onChange}
+        />
+        <select
+          ref={countryRef}
+          name="country"
+          className="select select-neutral"
+          value={input.country}
+          onChange={onChange}
+        >
+          <option value="">선택</option>
           <option value="kr">한국</option>
           <option value="us">미국</option>
           <option value="uk">영국</option>
         </select>
-        {country}
+        <textarea
+          ref={bioRef}
+          name="bio"
+          className="textarea textarea-neutral resize-none"
+          value={input.bio}
+          onChange={onChange}
+          placeholder={"자기소개"}
+        />
       </div>
-      <div>
-        <textarea value={bio} onChange={onChangeBio} />
-        {bio}
+      <div className="m-5">
+        <button className="btn" onClick={onSubmit}>
+          제출
+        </button>
       </div>
     </div>
   );
