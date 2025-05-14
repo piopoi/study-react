@@ -103,8 +103,7 @@ useEffect(() => {
 
 #### 4. 특정 로직을 컴포넌트가 제거될 때 실행
 
-`useEffect`의 콜백 함수가 반환하는 함수를 **클린업 함수(cleanup function)** 또는 **정리함수**라고 한다.
-이 **클린업 함수는 컴포넌트가 unmount 될 때 실행**된다.
+`useEffect`에서 반환된 함수를 **클린업 함수(cleanup function)** 또는 **정리 함수**라고 한다. **컴포넌트가 사라질 때(언마운트)**나 **effect가 다시 실행되기 전**에 실행된다. 이전 effect가 남긴 것을 정리할 때에도 사용된다.
 
 ```javascript
 useEffect(() => {
