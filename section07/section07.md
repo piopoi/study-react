@@ -29,7 +29,7 @@ useEffect(() => {
 - 두 번째 인자: **의존성 배열(dependency array, deps)**
 - `count`, `input` 값이 변경될 때마다 콘솔에 현재 값을 출력한다.
 
-### 그냥 값을 변경하는 함수에 추가하면 되는거 아닌가?
+### 값을 변경하는 함수에 콜백 로직을 넣으면 되는거 아니야?
 
 결론부터 **React의 상태 변화 함수**는 **비동기**로 실행되기 때문에 useEffect를 필수로 사용해야 한다.
 
@@ -60,4 +60,60 @@ useEffect(() => {
 const onClickButton = (value) => {
   setCount(count + value);
 };
+```
+
+### 라이프사이클 제어 응용
+
+#### 1. 특정 로직을 컴포넌트가 처음 마운트 될 때 한 번만 실행
+
+의존성 배열을 빈 배열로 입력하면 된다.
+
+```javascript
+useEffect(() => {
+  console.log("mount");
+}, []);
+```
+
+#### 2. 특정 로직을 컴포넌트가 리렌더링 될 때마다 실행
+
+의존성 배열 인자를 입력하지 않으면, 컴포넌트가 리렌더링 될 때마다 콜백 함수를 실행한다.
+
+```javascript
+useEffect(() => {
+  console.log("update");
+});
+```
+
+#### 3. 특정 로직을 업데이트 단계에서만 실행
+
+useRef로 플래그를 선언하여, 마운트 단계가 아닌 업데이트 단계에서만 콜백 함수를 실행할 수 있다.
+
+```javascript
+const isMounted = useRef(false);
+
+useEffect(() => {
+  if (!isMounted.current) {
+    // mount 단계에서는 return으로 비즈니스 로직을 타기 전에 함수가 종료된다.
+    isMounted.current = true;
+    return;
+  }
+  console.log("update");
+});
+```
+
+#### 4. 특정 로직을 컴포넌트가 제거될 때 실행
+
+`useEffect`의 콜백 함수가 반환하는 함수를 **클린업 함수(cleanup function)** 또는 **정리함수**라고 한다.
+이 **클린업 함수는 컴포넌트가 unmount 될 때 실행**된다.
+
+```javascript
+useEffect(() => {
+  // 마운트 단계에서 실행됨
+  console.log("mount");
+
+  // 언마운트 단계에서 실행됨 -> 클린업 함수, 정리함수
+  return () => {
+    console.log("unmount");
+  };
+}, []);
 ```
