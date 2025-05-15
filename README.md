@@ -4,11 +4,10 @@
 
 ## 챕터 별 링크
 
-[Section 01](/section01/section01.md): JavaScript 기본  
-[Section 02_1](/section02/section02_1.md): JavaScript 심화 1  
-[Section 02_2](/section02/section02_2.md): JavaScript 심화 2 - **비동기 처리**  
-[Section 03](/section03/section03.md): Node.js 기초  
-[Section 04](/section04/section04.md): React.js 개론  
-[Section 05](/section05/section05.md): React.js 입문  
-[Section 06](/section06/section06.md): 프로젝트1. 카운터 앱  
-[Section 07](/section07/section07.md): 라이프사이클
+[Section 01](/section01/README.md): JavaScript 기본  
+[Section 02](/section02/README.md): JavaScript 심화
+[Section 03](/section03/README.md): Node.js 기초  
+[Section 04](/section04/README.md): React.js 개론  
+[Section 05](/section05/README.md): React.js 입문  
+[Section 06](/section06/README.md): 프로젝트1. 카운터 앱  
+[Section 07](/section07/README.md): 라이프사이클
